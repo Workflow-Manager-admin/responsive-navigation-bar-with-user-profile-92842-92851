@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 
 // PUBLIC_INTERFACE
 /**
- * Navbar component that displays all navigation links in a dropdown menu.
- * Preserves all original colors/styles and does not change any other logic.
+ * Navbar component that displays navigation links in a dropdown menu.
+ * Absolutely preserves the logo and all other original navbar styling/logic.
+ * Only navigation links (Home, Settings, Profile/User) are in dropdown.
  */
 function Navbar({
   isAuthenticated,
@@ -32,12 +33,9 @@ function Navbar({
       <div className="nav-left">
         <Logo />
       </div>
-      <div className="nav-right">
-        {/* Theme toggle is kept as in original */}
-        <button className="theme-toggle-btn" onClick={onThemeToggle} aria-label="Toggle theme">
-          {theme === "light" ? "🌙" : "☀️"}
-        </button>
-        {/* Dropdown menu for all navigation */}
+
+      {/* Navigation links in dropdown menu ONLY - original layout fully preserved */}
+      <div className="nav-center" style={{ display: "flex", alignItems: "center", height: "100%" }}>
         <div className="dropdown-container" ref={dropdownRef}>
           <button
             className="profile-btn"
@@ -81,14 +79,19 @@ function Navbar({
           )}
         </div>
       </div>
+
+      <div className="nav-right">
+        {/* Theme toggle is kept as in original */}
+        <button className="theme-toggle-btn" onClick={onThemeToggle} aria-label="Toggle theme">
+          {theme === "light" ? "🌙" : "☀️"}
+        </button>
+      </div>
     </nav>
   );
 }
 
 // PUBLIC_INTERFACE
-/**
- * Simple text logo.
- */
+/** Simple text logo (untouched!). */
 function Logo() {
   return (
     <Link to="/" className="nav-logo" aria-label="Home">
